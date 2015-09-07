@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>CBenchMark.h</itemPath>
       <itemPath>CSumKahan.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -13,6 +14,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>CBenchMark.cpp</itemPath>
       <itemPath>CSumKahan.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -37,10 +39,18 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <ccTool>
+          <commandLine>-O2</commandLine>
+          <warningLevel>2</warningLevel>
+        </ccTool>
         <linkerTool>
           <commandLine>-lgmpxx -lgmp</commandLine>
         </linkerTool>
       </compileType>
+      <item path="CBenchMark.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CBenchMark.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="CSumKahan.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="CSumKahan.h" ex="false" tool="3" flavor2="0">
@@ -68,6 +78,10 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="CBenchMark.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CBenchMark.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="CSumKahan.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="CSumKahan.h" ex="false" tool="3" flavor2="0">

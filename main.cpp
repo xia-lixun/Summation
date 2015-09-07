@@ -9,7 +9,15 @@
 #include <stdio.h>
 #include <math.h>
 #include <gmpxx.h>
+
 #include "CSumKahan.h"
+#include "CBenchMark.h"
+
+
+
+#define TEST_LENGTH (8471)
+
+
 
 using namespace std;
 
@@ -18,6 +26,8 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
+    
+    double Result;
 
     mpf_class x0, x1, x2, x3, x4, x5, x6, x7;
     mpf_class r;
@@ -64,26 +74,70 @@ int main(int argc, char** argv) {
     printf("Naive Sum: %12.12f\n", y);
     printf("==================\n");
     
-    double DataTest[8192];
+    double DataTest[TEST_LENGTH];
     double offset = 0.4;    
     srand(time(NULL));  
-    for(int i = 0; i < 8192; i++) {
-        DataTest[i] = ((double) rand()) / (double)RAND_MAX - offset;
+    for(int i = 0; i < TEST_LENGTH; i++) {
+        //DataTest[i] = ((double) rand()) / (double)RAND_MAX - offset;
+        DataTest[i] = M_PI;
     }
-    acc.Reset();
-    printf("Kahan Sum(random): %12.12f\n", acc.Add(DataTest, 8192));
     
+
+    
+    CBenchMark TimerNanoSec;
+    
+    TimerNanoSec.TimerStart();
+    acc.Reset();
+    Result = acc.Add4d(DataTest, TEST_LENGTH);
+    TimerNanoSec.TimerStop();
+    printf("Kahan Sum(random): %12.16f in %ld ns\n", Result, TimerNanoSec.GetTimeElapsed());
+    
+    TimerNanoSec.TimerStart();
     y = 0.0;
     r = 0.0;
-    for(int i = 0; i < 8192; i++) {
+    for(int i = 0; i < TEST_LENGTH; i++) {
         y += DataTest[i];
         x0 = DataTest[i];
         r += x0;
     }
-    printf("Naive Sum(random): %12.12f\n", y);
-    printf("GMP Sum(random): %12.12f\n", r.get_d());
+    TimerNanoSec.TimerStop();
+    printf("Naive Sum(random): %12.16f in %ld ns\n", y, TimerNanoSec.GetTimeElapsed());
+    printf("GMP Sum(random)  : %12.16f in %ld ns\n", r.get_d(), TimerNanoSec.GetTimeElapsed());
     printf("==================\n");    
-    printf("= Try different offset values for different summation conditional number.\n");    
+    
+    
+    
+    
+    
+    
+    float y_f;
+    float Result_f;
+    float DataTest_f[TEST_LENGTH];
+    float offset_f = 0.4;    
+    for(int i = 0; i < TEST_LENGTH; i++) {
+        //DataTest[i] = ((float) rand()) / (float)RAND_MAX - offset;
+        DataTest_f[i] = (float)i;
+    }
+    
+    
+    TimerNanoSec.TimerStart();
+    acc.Reset();
+    Result_f = acc.Add8f(DataTest_f, TEST_LENGTH);
+    TimerNanoSec.TimerStop();
+    printf("Kahan Sum(random): %12.16f in %ld ns\n", Result_f, TimerNanoSec.GetTimeElapsed());
+    
+    TimerNanoSec.TimerStart();
+    y_f = 0.0f;
+    r = 0.0f;
+    for(int i = 0; i < TEST_LENGTH; i++) {
+        y_f += DataTest_f[i];
+        x0 = DataTest_f[i];
+        r += x0;
+    }
+    TimerNanoSec.TimerStop();
+    printf("Naive Sum(random): %12.16f in %ld ns\n", y_f, TimerNanoSec.GetTimeElapsed());
+    printf("GMP Sum(random)  : %12.16f in %ld ns\n", r.get_d(), TimerNanoSec.GetTimeElapsed());
+    
     printf("==================\n");    
     return 0;
 }

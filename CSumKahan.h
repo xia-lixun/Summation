@@ -8,6 +8,16 @@
 #ifndef CSUMKAHAN_H
 #define	CSUMKAHAN_H
 
+
+
+
+#include "instrset.h"
+#include "vectorclass.h"
+#include "complexvec.h"
+
+
+
+
 class CSumKahan {
     
 public:
@@ -28,7 +38,10 @@ public:
     
     float GetSumFloat(void);
     float GetErrMaxFloat(void);
-    float GetErrMinFloat(void);    
+    float GetErrMinFloat(void);
+
+    double Add4d(double * Data, int Length);
+    float Add8f(float * Data, int Length);
     
 private:
     CSumKahan(const CSumKahan& orig);
@@ -46,6 +59,13 @@ protected:
     
     double SetNaN_d(void);
     float SetNaN_f(void);
+    
+    // SSE/AVX
+    Vec4d SumVec4d;
+    Vec4d ErrVec4d;
+    
+    Vec8f SumVec8f;
+    Vec8f ErrVec8f;
 
 };
 

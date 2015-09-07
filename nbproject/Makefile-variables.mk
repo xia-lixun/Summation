@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux-x86
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux-x86
-CND_ARTIFACT_NAME_Debug=csummation
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/csummation
+CND_ARTIFACT_NAME_Debug=summation
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/summation
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Debug=csummation.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/csummation.tar
+CND_PACKAGE_NAME_Debug=summation.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/summation.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux-x86
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux-x86
-CND_ARTIFACT_NAME_Release=csummation
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/csummation
+CND_ARTIFACT_NAME_Release=summation
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/summation
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Release=csummation.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/csummation.tar
+CND_PACKAGE_NAME_Release=summation.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/summation.tar
 #
 # include compiler specific variables
 #

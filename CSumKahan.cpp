@@ -16,6 +16,17 @@ CSumKahan::CSumKahan() {
     mErr = 0.0;
     mErrMax = mErr;
     mErrMin = mErr;
+    
+    mSum_f = 0.0F;
+    mErr_f = 0.0F;
+    mErrMax_f = mErr_f;
+    mErrMin_f = mErr_f;
+    
+    SumVec4d = Vec4d(0.0);
+    ErrVec4d = Vec4d(0.0);    
+    
+    SumVec8f = Vec8f(0.0F);
+    ErrVec8f = Vec8f(0.0F);    
 }
 
 CSumKahan::CSumKahan(const CSumKahan& orig) {
@@ -39,7 +50,13 @@ void CSumKahan::Reset() {
     mSum_f = 0.0F;
     mErr_f = 0.0F;
     mErrMax_f = mErr_f;
-    mErrMin_f = mErr_f;     
+    mErrMin_f = mErr_f; 
+   
+    SumVec4d = Vec4d(0.0);
+    ErrVec4d = Vec4d(0.0);    
+    
+    SumVec8f = Vec8f(0.0F);
+    ErrVec8f = Vec8f(0.0F);
 }
 
 
@@ -93,8 +110,10 @@ double CSumKahan::Add(double * Data, int Length) {
     double mSumConverge;
     
     // check if length is valid
-    if(Length <= 0) {
+    if(Length < 0) {
         return SetNaN_d();
+    } else if(Length == 0) {
+        return mSum;
     }
     
     for(int i = 0; i < Length; i++) {
@@ -137,8 +156,10 @@ float CSumKahan::Add(float * Data, int Length) {
     float mSumConverge_f;
     
     // check if length is valid
-    if(Length <= 0) {
+    if(Length < 0) {
         return SetNaN_f();
+    } else if(Length == 0) {
+        return mSum_f;
     }
     
     for(int i = 0; i < Length; i++) {
@@ -182,4 +203,70 @@ float CSumKahan::GetErrMaxFloat() {
 
 float CSumKahan::GetErrMinFloat() {
     return mErrMin_f;
+}
+
+
+
+
+
+
+
+
+
+
+double CSumKahan::Add4d(double * Data, int Length) {
+    
+    if(Length < 4) {
+        Add(Data, Length);
+    } else {
+        Vec4d DataVec4d;
+        Vec4d InputCompensatedVec4d;
+        Vec4d SumConvergeVec4d;
+        
+        int i;
+        for(i = 0; i+4 <= Length; i += 4) {
+            DataVec4d.load(Data);
+            InputCompensatedVec4d = DataVec4d - ErrVec4d; 
+            SumConvergeVec4d = SumVec4d + InputCompensatedVec4d;
+            ErrVec4d = (SumConvergeVec4d - SumVec4d) - InputCompensatedVec4d;
+            SumVec4d = SumConvergeVec4d;
+            Data += 4;
+        }
+
+        double mSumVec4d[4];
+        SumVec4d.store(mSumVec4d);
+        Add(mSumVec4d, 4);
+        Add(Data, Length-i);
+    }
+    return mSum;        
+}
+
+
+
+
+float CSumKahan::Add8f(float * Data, int Length) {
+    
+    if(Length < 8) {
+        Add(Data, Length);
+    } else {
+        Vec8f DataVec8f;
+        Vec8f InputCompensatedVec8f;
+        Vec8f SumConvergeVec8f;
+        
+        int i;
+        for(i = 0; i+8 <= Length; i += 8) {
+            DataVec8f.load(Data);
+            InputCompensatedVec8f = DataVec8f - ErrVec8f; 
+            SumConvergeVec8f = SumVec8f + InputCompensatedVec8f;
+            ErrVec8f = (SumConvergeVec8f - SumVec8f) - InputCompensatedVec8f;
+            SumVec8f = SumConvergeVec8f;
+            Data += 8;
+        }
+
+        float mSumVec8f[8];
+        SumVec8f.store(mSumVec8f);
+        Add(mSumVec8f, 8);
+        Add(Data, Length-i);
+    }
+    return mSum_f;        
 }
