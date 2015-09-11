@@ -40,7 +40,7 @@ CSumKahan::~CSumKahan() {
 
 
 
-void CSumKahan::Reset() {
+void CSumKahan::ResetSum() {
     
     mSum = 0.0;
     mErr = 0.0;

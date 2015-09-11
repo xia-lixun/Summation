@@ -87,7 +87,7 @@ int main(int argc, char** argv) {
     CBenchMark TimerNanoSec;
     
     TimerNanoSec.TimerStart();
-    acc.Reset();
+    acc.ResetSum();
     Result = acc.Add4d(DataTest, TEST_LENGTH);
     TimerNanoSec.TimerStop();
     printf("Kahan Sum(random): %12.16f in %ld ns\n", Result, TimerNanoSec.GetTimeElapsed());
@@ -121,7 +121,7 @@ int main(int argc, char** argv) {
     
     
     TimerNanoSec.TimerStart();
-    acc.Reset();
+    acc.ResetSum();
     Result_f = acc.Add8f(DataTest_f, TEST_LENGTH);
     TimerNanoSec.TimerStop();
     printf("Kahan Sum(random): %12.16f in %ld ns\n", Result_f, TimerNanoSec.GetTimeElapsed());

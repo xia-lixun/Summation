@@ -5,6 +5,7 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>CBenchMark.h</itemPath>
+      <itemPath>CMoment.h</itemPath>
       <itemPath>CSumKahan.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -15,6 +16,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>CBenchMark.cpp</itemPath>
+      <itemPath>CMoment.cpp</itemPath>
       <itemPath>CSumKahan.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -51,6 +53,10 @@
       </item>
       <item path="CBenchMark.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="CMoment.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CMoment.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="CSumKahan.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="CSumKahan.h" ex="false" tool="3" flavor2="0">
@@ -81,6 +87,10 @@
       <item path="CBenchMark.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="CBenchMark.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="CMoment.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="CMoment.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="CSumKahan.cpp" ex="false" tool="1" flavor2="0">
       </item>

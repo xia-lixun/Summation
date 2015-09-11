@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/CBenchMark.o \
+	${OBJECTDIR}/CMoment.o \
 	${OBJECTDIR}/CSumKahan.o \
 	${OBJECTDIR}/main.o
 
@@ -68,6 +69,11 @@ ${OBJECTDIR}/CBenchMark.o: CBenchMark.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Wall -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/CBenchMark.o CBenchMark.cpp
+
+${OBJECTDIR}/CMoment.o: CMoment.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Wall -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/CMoment.o CMoment.cpp
 
 ${OBJECTDIR}/CSumKahan.o: CSumKahan.cpp 
 	${MKDIR} -p ${OBJECTDIR}

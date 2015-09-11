@@ -30,7 +30,7 @@ public:
     float Add(float Data);
     float Add(float * Data, int Length);
     
-    void Reset(void);
+    void ResetSum(void);
     
     double GetSum(void);
     double GetErrMax(void);
